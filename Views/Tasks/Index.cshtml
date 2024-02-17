@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MyTask.Models.Task>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<body>
+
+<table class="table">
+    
+        <tr>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th class="table-dark th"colspan="3" >
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+           
+        </tr>
+    
+@foreach (var task in Model) {
+            <tr>
+                <td class="table-light first">
+                @task.TaskName
+            </td>
+            <td class="table-light blockquote">
+                @task.Description
+            </td>
+            
+                <td class="table-light">
+                    <a asp-action="Edit" class="button" asp-route-id="@task.TaskId">Edit</a>
+                </td>
+                <td class="table-light">
+                <a asp-action="Delete" class="button delete" asp-route-id="@task.TaskId">Delete</a>
+            </td>
+        </tr>
+}
+        <a asp-action="Create" class="button create">Add New Task</a>
+        <a asp-controller="Login" asp-action="Index" class="button create">Log out</a>
+    
+</table>
+</body>
